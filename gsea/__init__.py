@@ -8,6 +8,9 @@ Main.eval(
 """
 )
 
-from .score_1_sample_1_set import score_1_sample_1_set
-from .score_1_sample_n_set import score_1_sample_n_set
-from .score_n_sample_n_set import score_n_sample_n_set
+from ._score_1_1 import _score_1_1
+from ._score_1_n import _score_1_n
+from ._score_n_n import _score_n_n
+from .run_gsea import run_gsea
+from .run_prerank_gsea import run_prerank_gsea
+from .run_single_sample_gsea import run_single_sample_gsea

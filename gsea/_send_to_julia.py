@@ -1,7 +1,7 @@
 from . import Main
 
 
-def _send(el_sc, el1_, se_el1_, sc_el_sa):
+def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa):
 
     if el_sc is not None:
 
