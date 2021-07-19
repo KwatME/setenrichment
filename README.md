@@ -1,56 +1,35 @@
 ## Install
 
-### FeatureSetEnrichment.py (this)
+### This GSEA python module
 
 ```sh
-python3 -m pip install git+https://github.com/KwatME/FeatureSetEnrichment.py
+python -m pip install git+https://github.com/KwatME/gsea
 ```
 
-### Julia 1.5.4 (PyCall and pyjulia are not compatible with 1.6 yet)
+### [Julia 1.5.4](https://julialang.org/downloads/oldreleases/)
 
-### Julia packages
-
-```sh
-cd ~/code/jl/ &&
-
-git clone https://github.com/KwatME/FeatureSetEnrichment.jl &&
-
-git clone https://github.com/KwatME/GCTGMT.jl
-```
+### Julia modules
 
 ```sh
 julia
 ```
 
 ```julia
-using Pkg: add, develop, build
+using Pkg: add
 
-for name in (
-    "IJulia",
+for na in [
+    "PyCall",
     "DataFrames",
     "Pandas",
-)
+]
 
-    add(; name=name)
-
-end
-
-for path in (
-    "$(homedir())/code/jl/FeatureSetEnrichment.jl/",
-    "$(homedir())/code/jl/GCTGMT.jl/",
-)
-
-    develop(; path=path)
+    add(na)
 
 end
 
-build("IJulia")
+add(url="https://github.com/KwatME/Kwat.jl")
 ```
 
 ## Use
 
-See [examples](notebook/example.ipynb).
-
----
-
-Check out the [julia version](https://github.com/KwatME/FeatureSetEnrichment.jl) and the [desktop application](https://github.com/KwatME/GSEA.web).
+See [examples](nb).
