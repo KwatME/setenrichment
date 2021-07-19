@@ -2,7 +2,7 @@ from julia import Main
 
 Main.eval(
     """
-    using Kwat.FeatureSetEnrichment: score_set
+    using Kwat.FeatureSetEnrichment: score_set, score_set_new
     using DataFrames
     using Pandas
 """

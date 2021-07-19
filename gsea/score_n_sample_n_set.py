@@ -2,9 +2,11 @@ from . import Main
 from ._send import _send
 
 
-def score_n_sample_n_set(sc_el_sa, se_el1_, n_jo=1):
+def score_n_sample_n_set(sc_el_sa, se_el1_, me="classic", n_jo=1):
 
     _send(None, None, se_el1_, sc_el_sa.reset_index())
+
+    Main.me = me
 
     Main.n_jo = n_jo
 
@@ -13,6 +15,7 @@ def score_n_sample_n_set(sc_el_sa, se_el1_, n_jo=1):
         Pandas.DataFrame(score_set(
             sc_el_sa,
             se_el1_;
+            me = me,
             n_jo = n_jo,
         ))
     """

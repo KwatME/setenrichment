@@ -3,7 +3,9 @@ from julia import Main
 from ._send import _send
 
 
-def score_1_sample_1_set(el_sc, el1_, so=True, pl=True, title="Score Set"):
+def score_1_sample_1_set(
+    el_sc, el1_, so=True, me="classic", pl=True, title="Score Set"
+):
 
     _send(el_sc, el1_, None, None)
 
@@ -13,15 +15,25 @@ def score_1_sample_1_set(el_sc, el1_, so=True, pl=True, title="Score Set"):
 
     Main.title = title
 
+    if me == "classic":
+
+        fu = "score_set"
+
+    elif me == "new":
+
+        fu = "score_set_new"
+
     return Main.eval(
         """
-        score_set(
+        {}(
             el_,
             sc_,
             el1_;
-            sort = so,
-            plot = pl,
+            so = so,
+            pl = pl,
             title = title,
         )
-    """
+    """.format(
+            fu
+        )
     )
