@@ -33,3 +33,15 @@ add(url="https://github.com/KwatME/Kwat.jl")
 ## Use
 
 See [examples](nb).
+
+## Documentation
+
+### Prerank GSEA (and GSEA)
+
+as: association metric:
+- si: signal to noise
+- io: information coefficient
+- co: cosine
+- di: difference
+- ra: ratio
+- lo: log ratio
