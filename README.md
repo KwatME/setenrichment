@@ -50,7 +50,7 @@ add(url="https://github.com/KwatME/Kwat.jl")
 
 ## Test
 
-Test running the core algorithm:
+Run julia core algorithm:
 
 ```sh
 julia --eval '
@@ -68,7 +68,7 @@ println(":)")
 '
 ```
 
-Test running the python interface:
+Run python interface:
 
 ```sh
 python -c '
