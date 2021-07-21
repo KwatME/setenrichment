@@ -18,7 +18,7 @@ Check if julia runs in the commond line
 julia
 ```
 
-May need to link julia (to make it visible by the command line)
+May need to link (and make it visible by the command line)
 
 ```sh
 ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin
