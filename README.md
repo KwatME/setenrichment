@@ -53,7 +53,19 @@ add(url="https://github.com/KwatME/Kwat.jl")
 Test running the core algorithm:
 
 ```sh
-julia --eval 'using Kwat.feature_set_enrichment: score_set; println(score_set(["A", "B"], [-1., 1.], ["B"]; pl = false))'
+julia --eval '
+using Kwat.feature_set_enrichment: score_set
+
+el_ = ["A", "B"]
+
+sc_ = [-1., 1.]
+
+el1_ = ["B"]
+
+println(score_set(el_, sc_, el1_; pl = false))
+
+println(":)")
+'
 ```
 
 Test running the python interface:
@@ -62,13 +74,15 @@ Test running the python interface:
 python -c '
 import pandas as pd
 
-import gsea
-
 el_sc = pd.Series([-1, 1], index=["A", "B"])
 
 el1_ = ["B"]
 
+import gsea
+
 print(gsea.score_1_1(el_sc, el1_, pl=False))
+
+print(":)")
 '
 ```
 
