@@ -64,7 +64,7 @@ el1_ = ["B"]
 
 println(score_set(el_, sc_, el1_; pl = false))
 
-println(":)")
+println("Good :)")
 '
 ```
 
@@ -82,7 +82,7 @@ import gsea
 
 print(gsea.score_1_1(el_sc, el1_, pl=False))
 
-print(":)")
+println("Great :)")
 '
 ```
 
