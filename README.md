@@ -19,8 +19,7 @@ Check if julia runs in the commond line:
 julia
 ```
 
-May need to link julia.
-Link (in macOS):
+May need to link julia:
 
 ```sh
 ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin
@@ -28,7 +27,7 @@ ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/
 
 Install julia modules:
 
-- PyCall (links python and julia)
+- PyCall (python-julia interface)
 - Kwat.jl (core algorithm and helper)
 
 ```sh
