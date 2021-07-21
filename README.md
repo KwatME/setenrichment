@@ -1,6 +1,6 @@
 ## Install
 
-Install python modules:
+### Install python modules
 
 - gsea (this module)
 - kwat.py (helper)
@@ -11,21 +11,21 @@ python -m pip install git+https://github.com/KwatME/gsea
 python -m pip install git+https://github.com/KwatME/kwat.py
 ```
 
-Install [julia 1.5.4](https://julialang.org/downloads/oldreleases/)
+### Install [julia 1.5.4](https://julialang.org/downloads/oldreleases/)
 
-Check if julia runs in the commond line:
+Check if julia runs in the commond line
 
 ```sh
 julia
 ```
 
-May need to link julia:
+May need to link julia
 
 ```sh
 ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin
 ```
 
-Install julia modules:
+### Install julia modules
 
 - Kwat.jl (core algorithm and helper)
 - PyCall (python-julia interface)
@@ -50,9 +50,7 @@ end
 '
 ```
 
-## Test
-
-Run julia core algorithm:
+### Test running julia core algorithm
 
 ```sh
 julia --eval '
@@ -70,13 +68,13 @@ println("Good :)")
 '
 ```
 
-Run python interface:
+### Test running python interface
 
 ```sh
 python -c '
 from pandas import Series
 
-el_sc = Series([-1, 1], index=["A", "B"])
+el_sc = Series([-1., 1.], index=["A", "B"])
 
 el1_ = ["B"]
 
@@ -84,7 +82,7 @@ from gsea import score_1_1
 
 print(score_1_1(el_sc, el1_, pl=False))
 
-println("Great :D")
+print("Great :D")
 '
 ```
 
