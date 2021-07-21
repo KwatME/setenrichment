@@ -33,7 +33,7 @@ using Pkg: add
 add(url="https://github.com/KwatME/Kwat.jl") # Core algorithm and helper
 
 for na in [
-    "PyCall", # Python-julia interface
+    "PyCall", # Interface between python and julia
     "DataFrames",
     "Pandas",
 ]
@@ -46,7 +46,7 @@ end
 
 ## Test
 
-### Run julia core algorithm
+### Julia core algorithm
 
 ```sh
 julia --eval '
@@ -64,7 +64,7 @@ println("Good.")
 '
 ```
 
-### Run python interface
+### Python interface
 
 ```sh
 python -c '
