@@ -1,6 +1,6 @@
 ## Install
 
-### Install python modules
+### Python modules
 
 - gsea (this module)
 - kwat.py (helper)
@@ -11,7 +11,9 @@ python -m pip install git+https://github.com/KwatME/gsea
 python -m pip install git+https://github.com/KwatME/kwat.py
 ```
 
-### Install [julia 1.5.4](https://julialang.org/downloads/oldreleases/)
+### Julia
+
+[Version 1.5.4](https://julialang.org/downloads/oldreleases/)
 
 Check if julia runs in the commond line
 
@@ -19,13 +21,13 @@ Check if julia runs in the commond line
 julia
 ```
 
-May need to link julia
+May need to link julia (to make it visible by the command line)
 
 ```sh
 ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin
 ```
 
-### Install julia modules
+### Julia modules
 
 - Kwat.jl (core algorithm and helper)
 - PyCall (python-julia interface)
@@ -50,7 +52,9 @@ end
 '
 ```
 
-### Test running julia core algorithm
+## Test
+
+### Run julia core algorithm
 
 ```sh
 julia --eval '
@@ -68,7 +72,7 @@ println("Good :)")
 '
 ```
 
-### Test running python interface
+### Run python interface
 
 ```sh
 python -c '
