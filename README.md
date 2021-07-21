@@ -27,25 +27,27 @@ ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/
 
 Install julia modules:
 
-- PyCall (python-julia interface)
 - Kwat.jl (core algorithm and helper)
+- PyCall (python-julia interface)
+- DataFrames
+- Pandas
 
 ```sh
-julia
-```
-
-```julia
+julia --eval '
 using Pkg: add
+
+add(url="https://github.com/KwatME/Kwat.jl")
 
 for na in [
     "PyCall",
+    "DataFrames",
+    "Pandas",
 ]
 
     add(na)
 
 end
-
-add(url="https://github.com/KwatME/Kwat.jl")
+'
 ```
 
 ## Test
@@ -72,17 +74,17 @@ Run python interface:
 
 ```sh
 python -c '
-import pandas as pd
+from pandas import Series
 
-el_sc = pd.Series([-1, 1], index=["A", "B"])
+el_sc = Series([-1, 1], index=["A", "B"])
 
 el1_ = ["B"]
 
-import gsea
+from gsea import score_1_1
 
-print(gsea.score_1_1(el_sc, el1_, pl=False))
+print(score_1_1(el_sc, el1_, pl=False))
 
-println("Great :)")
+println("Great :D")
 '
 ```
 

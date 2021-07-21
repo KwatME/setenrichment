@@ -1,7 +1,7 @@
 from . import Main
 
 
-def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa):
+def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa, we, me):
 
     if el_sc is not None:
 
@@ -32,3 +32,17 @@ def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa):
             sc_el_sa = DataFrames.DataFrame(Pandas.DataFrame(sc_el_sa))
         """
         )
+
+    if we is not None:
+
+        Main.we = we
+
+        Main.eval(
+            """
+            we = convert(Float64, we)
+        """
+        )
+
+    if me is not None:
+
+        Main.me = me

@@ -1,8 +1,8 @@
 from ._combine_gene_set_enrichments import _combine_gene_set_enrichments
 from ._convert_gmt_to_dict import _convert_gmt_to_dict
 from ._normalize_each_sample import _normalize_each_sample
-from ._score_n_n import _score_n_n
 from ._select_gene_sets import _select_gene_sets
+from .score_n_n import score_n_n
 
 
 def run_single_sample_gsea(
@@ -22,7 +22,7 @@ def run_single_sample_gsea(
 
     se_ge_ = _select_gene_sets(gm, mi, ma)
 
-    en_se_sa = _score_n_n(sc_ge_sa, se_ge_, me=me, we=we)
+    en_se_sa = score_n_n(sc_ge_sa, se_ge_, me=me, we=we)
 
     en_se_sa = _combine_gene_set_enrichments(en_se_sa)
 

@@ -1,21 +1,14 @@
-from julia import Main
-
+from . import Main
 from ._send_to_julia import _send_to_julia
 
 
-def _score_1_n(el_sc, se_el1_, we=1.0, me="ks"):
+def score_1_1(el_sc, el1_, we=1.0, me="ks", pl=True, title="Title"):
 
-    _send_to_julia(el_sc, None, se_el1_, None)
+    _send_to_julia(el_sc, el1_, None, None, we, me)
 
-    Main.we = we
+    Main.pl = pl
 
-    Main.eval(
-        """
-        we = Float64(we)
-    """
-    )
-
-    Main.me = me
+    Main.title = title
 
     if me in ["ks", "auc"]:
 
@@ -24,9 +17,11 @@ def _score_1_n(el_sc, se_el1_, we=1.0, me="ks"):
             score_set(
                 el_,
                 sc_,
-                se_el1_;
+                el1_;
                 we = we,
                 me = me,
+                pl = pl,
+                title = title,
             )
         """
         )
@@ -38,7 +33,9 @@ def _score_1_n(el_sc, se_el1_, we=1.0, me="ks"):
             score_set_new(
                 el_,
                 sc_,
-                se_el1_;
+                el1_;
+                pl = pl,
+                title = title,
             )
         """
         )

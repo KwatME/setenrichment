@@ -1,8 +1,8 @@
 from pandas import DataFrame
 
 from ._convert_gmt_to_dict import _convert_gmt_to_dict
-from ._score_1_n import _score_1_n
 from ._select_gene_sets import _select_gene_sets
+from .score_1_n import score_1_n
 
 
 def run_prerank_gsea(
@@ -24,7 +24,7 @@ def run_prerank_gsea(
 
     se_ge_ = _select_gene_sets(gm, mi, ma)
 
-    se_en = _score_1_n(ge_sc, se_ge_, we=we, me=me)
+    se_en = score_1_n(ge_sc, se_ge_, we=we, me=me)
 
     se, pe, n_pe
 
