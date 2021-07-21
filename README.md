@@ -98,6 +98,6 @@ See [examples](nb).
 
 Coming soon...
 
----
+## Discuss
 
 To report a bug, request a feature, or leave a comment (about anything related to this project), just [submit an issue](https://github.com/KwatME/gsea/issues/new/choose).
