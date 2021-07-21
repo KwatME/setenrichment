@@ -97,3 +97,7 @@ See [examples](nb).
 ## Documentation
 
 Coming soon...
+
+---
+
+To report a bug, request a feature, or leave a comment (about anything related to this project), just [submit an issue](https://github.com/KwatME/gsea/issues/new/choose).
