@@ -2,18 +2,15 @@
 
 ### Python modules
 
-- gsea (this module)
-- kwat.py (helper)
-
 ```sh
-python -m pip install git+https://github.com/KwatME/gsea
+python -m pip install git+https://github.com/KwatME/gsea # This module
 
-python -m pip install git+https://github.com/KwatME/kwat.py
+python -m pip install git+https://github.com/KwatME/kwat.py # Helper
 ```
 
 ### Julia
 
-[Version 1.5.4](https://julialang.org/downloads/oldreleases/)
+[Version 1.5.4](https://julialang.org/downloads/oldreleases)
 
 Check if julia runs in the commond line
 
@@ -29,19 +26,14 @@ ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/
 
 ### Julia modules
 
-- Kwat.jl (core algorithm and helper)
-- PyCall (python-julia interface)
-- DataFrames
-- Pandas
-
 ```sh
 julia --eval '
 using Pkg: add
 
-add(url="https://github.com/KwatME/Kwat.jl")
+add(url="https://github.com/KwatME/Kwat.jl") # Core algorithm and helper
 
 for na in [
-    "PyCall",
+    "PyCall", # Python-julia interface
     "DataFrames",
     "Pandas",
 ]
