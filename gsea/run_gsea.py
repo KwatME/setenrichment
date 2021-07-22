@@ -8,15 +8,17 @@ def run_gsea(
     se_ge_,
     no="-0-",
     ra="si",
+    pe="label",
     **ke,
 ):
     """
     sc_ge_sa (DataFrame): Gene-by-sample scores
     sa_la (Series): Sample labels
-    se_ge_ (dict): set-to-genes
+    se_ge_ (dict of str to list of str): set-to-genes
 
-    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", "log"
-    ra (str): Ranking method: "signal to noise", "information coefficient", "difference", "ratio", "log ratio"
+    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", or "log"
+    ra (str): Ranking method: "signal to noise", "information coefficient", "difference", "ratio", or "log ratio"
+    pe (str): Permutation type: "label" or "set"
 
     Keyword arguments of run_prerank_gsea...
     """
@@ -26,5 +28,7 @@ def run_gsea(
     sa_la, ra
 
     ge_sc = sc_ge_sa.sum(axis=1)
+
+    pe
 
     return run_prerank_gsea(ge_sc, se_ge_, **ke)

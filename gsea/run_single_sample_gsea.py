@@ -16,13 +16,13 @@ def run_single_sample_gsea(
 ):
     """
     sc_ge_sa (DataFrame): Gene-by-sample score
-    se_ge_ (dict): set-to-genes
+    se_ge_ (dict of str to list of str): set-to-genes
 
-    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", "log"
+    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", or "log"
     mi (int): Minimum gene set size
     ma (int): Maximum gene set size
     we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", "js"
+    me (str): Enrichment method: "ks", "auc", or "js"
 
     pa (str): .TSV file path to write the gene-set-by-sample output
     """

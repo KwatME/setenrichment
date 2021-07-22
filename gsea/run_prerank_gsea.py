@@ -24,7 +24,7 @@ def run_prerank_gsea(
     mi (int): Minimum gene set size
     ma (int): Maximum gene set size
     we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", "js"
+    me (str): Enrichment method: "ks", "auc", or "js"
     se (int): Random seed
     n_pe (int): Number of permutations
     n_pl (int): Number of extreme gene sets to plot
