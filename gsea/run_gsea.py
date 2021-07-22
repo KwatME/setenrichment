@@ -5,7 +5,7 @@ from .run_prerank_gsea import run_prerank_gsea
 def run_gsea(
     sc_ge_sa,
     sa_la,
-    gm,
+    se_ge_,
     no="-0-",
     ra="si",
     **ke,
@@ -13,7 +13,7 @@ def run_gsea(
     """
     sc_ge_sa (DataFrame): Gene-by-sample scores
     sa_la (Series): Sample labels
-    gm (DataFrame|dict): .GMT | set-to-genes
+    se_ge_ (dict): set-to-genes
 
     no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", "log"
     ra (str): Ranking method: "signal to noise", "information coefficient", "difference", "ratio", "log ratio"
@@ -27,4 +27,4 @@ def run_gsea(
 
     ge_sc = sc_ge_sa.sum(axis=1)
 
-    return run_prerank_gsea(ge_sc, gm, **ke)
+    return run_prerank_gsea(ge_sc, se_ge_, **ke)

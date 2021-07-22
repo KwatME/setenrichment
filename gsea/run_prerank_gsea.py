@@ -1,13 +1,12 @@
 from pandas import DataFrame
 
-from ._convert_gmt_to_dict import _convert_gmt_to_dict
 from ._select_gene_sets import _select_gene_sets
 from .score_1_n import score_1_n
 
 
 def run_prerank_gsea(
     ge_sc,
-    gm,
+    se_ge_,
     mi=5,
     ma=500,
     we=1.0,
@@ -20,7 +19,7 @@ def run_prerank_gsea(
 ):
     """
     ge_sc (Series): Gene scores
-    gm (DataFrame|dict): .GMT | set-to-genes
+    se_ge_ (dict): set-to-genes
 
     mi (int): Minimum gene set size
     ma (int): Maximum gene set size
@@ -34,9 +33,7 @@ def run_prerank_gsea(
     pa (str): Directory path to write the statistic.tsv and plots
     """
 
-    gm = _convert_gmt_to_dict(gm)
-
-    se_ge_ = _select_gene_sets(gm, mi, ma)
+    se_ge_ = _select_gene_sets(se_ge_, mi, ma)
 
     se_en = score_1_n(ge_sc, se_ge_, we=we, me=me)
 
