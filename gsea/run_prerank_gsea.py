@@ -19,7 +19,7 @@ def run_prerank_gsea(
 ):
     """
     ge_sc (Series): Gene scores
-    se_ge_ (dict): set-to-genes
+    se_ge_ (dict of str to list of str): set-to-genes
 
     mi (int): Minimum gene set size
     ma (int): Maximum gene set size
