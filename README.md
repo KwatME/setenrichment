@@ -3,9 +3,11 @@
 ### Python modules
 
 ```sh
-python -m pip install git+https://github.com/KwatME/gsea # This module
+# This module
+python -m pip install git+https://github.com/KwatME/gsea
 
-python -m pip install git+https://github.com/KwatME/kwat.py # Helper
+# Helper
+python -m pip install git+https://github.com/KwatME/kwat.py
 ```
 
 ### Julia
