@@ -14,10 +14,10 @@ python -m pip install git+https://github.com/KwatME/kwat.py
 
 [Version 1.5.4](https://julialang.org/downloads/oldreleases)
 
-Check if julia runs in the commond line
+Check if julia 1.5.4 runs in the commond line
 
 ```sh
-julia
+julia --version
 ```
 
 May need to link (and make it visible by the command line)
