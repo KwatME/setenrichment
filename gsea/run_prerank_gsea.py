@@ -13,12 +13,26 @@ def run_prerank_gsea(
     we=1.0,
     me="ks",
     se=1729,
-    pe="label",
     n_pe=1000,
     n_pl=25,
     ad=None,
     pa="",
 ):
+    """
+    ge_sc (Series): Gene scores
+    gm (DataFrame|dict): .GMT | set-to-genes
+
+    mi (int): Minimum gene set size
+    ma (int): Maximum gene set size
+    we (float): Weight used for enrichment method "ks" and "auc"
+    me (str): Enrichment method: "ks", "auc", "js"
+    se (int): Random seed
+    n_pe (int): Number of permutations
+    n_pl (int): Number of extreme gene sets to plot
+    ad (list of str): Additional gene sets to plot
+
+    pa (str): Directory path to write the statistic.tsv and plots
+    """
 
     gm = _convert_gmt_to_dict(gm)
 
@@ -26,7 +40,7 @@ def run_prerank_gsea(
 
     se_en = score_1_n(ge_sc, se_ge_, we=we, me=me)
 
-    se, pe, n_pe
+    se, n_pe
 
     pv_ = None
 
