@@ -1,10 +1,9 @@
+from kwat.array_array import separate_and_apply
 from kwat.information import get_signal_to_noise
 from kwat.significance import get_p_value, get_q_value
 from numpy import apply_along_axis, array
 from numpy.random import seed, shuffle
 from pandas import DataFrame, Series
-
-from kwat.array_array import separate_and_apply
 
 from ._select_set import _select_set
 from .run_prerank_gsea import run_prerank_gsea
@@ -131,11 +130,11 @@ def run_gsea(
 
             nu_se_st.to_csv("{}/statistics.tsv".format(pa), sep="\t")
 
-        return nu_se_st
+        return el_sc, nu_se_st
 
     elif pe == "set":
 
-        return run_prerank_gsea(
+        return el_sc, run_prerank_gsea(
             el_sc,
             se_el_,
             mi=mi,
