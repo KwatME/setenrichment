@@ -4,7 +4,7 @@ na = "gsea"
 
 setup(
     name=na,
-    version="0.2.1",
+    version="0.3.1",
     url="https://github.com/KwatME/gsea",
     python_requires=">=3.6.0",
     install_requires=["julia", "pandas"],

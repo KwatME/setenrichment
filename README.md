@@ -93,51 +93,55 @@ See [examples](nb).
 ### run_single_sample_gsea
 
 ```
-gsea.run_single_sample_gsea = run_single_sample_gsea(sc_ge_sa, se_ge_, no='-0-', mi=5, ma=500, we=1.0, me='ks', pa='')
-    sc_ge_sa (DataFrame): Gene-by-sample score
-    se_ge_ (dict of str to list of str): set-to-genes
+sc_el_sa (DataFrame): Scores as element-by-sample
+se_el_ (dict of str to list of str): Sets as set-to-element
 
-    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", or "log"
-    mi (int): Minimum gene set size
-    ma (int): Maximum gene set size
-    we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", or "js"
+mi (int): Minimum set size
+ma (int): Maximum set size
+we (float): Weight used for enrichment method "ks" and "auc"
+al (str): Algorithm for enrichment: "ks", "auc", or "js"
 
-    pa (str): .TSV file path to write the gene-set-by-sample output
+pa (str): Directory path to write enrichment_set_sample.tsv
 ```
 
 ### run_prerank_gsea
 
 ```
-gsea.run_prerank_gsea = run_prerank_gsea(ge_sc, se_ge_, mi=5, ma=500, we=1.0, me='ks', se=1729, n_pe=1000, n_pl=25, ad=None, pa='')
-    ge_sc (Series): Gene scores
-    se_ge_ (dict): set-to-genes
+el_sc (Series): Scores sorted
+se_el_ (dict of str to list of str): Sets as set-to-element
 
-    mi (int): Minimum gene set size
-    ma (int): Maximum gene set size
-    we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", or "js"
-    se (int): Random seed
-    n_pe (int): Number of permutations
-    n_pl (int): Number of extreme gene sets to plot
-    ad (list of str): Additional gene sets to plot
+mi (int): Minimum set size
+ma (int): Maximum set size
+we (float): Weight used for enrichment method "ks" and "auc"
+al (str): Algorithm for enrichment: "ks", "auc", or "js"
+ra (int): Random seed
+n_pe (int): Number of permutations
+n_pl (int): Number of extreme sets to plot
+ad (list of str): Additional sets to plot
 
-    pa (str): Directory path to write the statistic.tsv and plots
+pa (str): Directory path to write statistic.tsv and plots
 ```
 
 ### run_gsea
 
 ```
-gsea.run_gsea = run_gsea(sc_ge_sa, sa_la, se_ge_, no='-0-', ra='si', pe='label', **ke)
-    sc_ge_sa (DataFrame): Gene-by-sample scores
-    sa_la (Series): Sample labels
-    se_ge_ (dict of str to list of str): set-to-genes
+la_ (list): Sample labels
+sc_el_sa (DataFrame): Scores as element-by-sample
+se_el_ (dict of str to list of str): Sets as set-to-element
 
-    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", or "log"
-    ra (str): Ranking method: "signal to noise", "information coefficient", "difference", "ratio", or "log ratio"
-    pe (str): Permutation type: "label" or "set"
+fu (str): Function for rank: "signal to noise", "median difference", or "median ratio"
+pe (str): Permutation type: "label" or "set"
 
-    Keyword arguments of run_prerank_gsea...
+mi (int): Minimum set size
+ma (int): Maximum set size
+we (float): Weight used for enrichment method "ks" and "auc"
+al (str): Algorithm for enrichment: "ks", "auc", or "js"
+ra (int): Random seed
+n_pe (int): Number of permutations
+n_pl (int): Number of extreme sets to plot
+ad (list of str): Additional sets to plot
+
+pa (str): Directory path to write statistic.tsv and plots
 ```
 
 ## Discuss
