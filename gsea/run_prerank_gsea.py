@@ -10,24 +10,30 @@ from .score_1_n import score_1_n
 def run_prerank_gsea(
     el_sc,
     se_el_,
+    #
     mi=5,
     ma=500,
+    #
     we=1.0,
     al="ks",
+    #
     ra=1729,
     n_pe=100,
     n_pl=25,
     ad=None,
+    #
     pa="",
 ):
     """
-    el_sc (Series): Scores sorted
-    se_el_ (dict of str to list of str): Sets as set-to-element
+    el_sc (Series): Sorted gene scores
+    se_el_ (dict of str to list of str): Gene set to genes
 
     mi (int): Minimum set size
     ma (int): Maximum set size
-    we (float): Weight used for enrichment method "ks" and "auc"
-    al (str): Algorithm for enrichment: "ks", "auc", or "js"
+
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
+
     ra (int): Random seed
     n_pe (int): Number of permutations
     n_pl (int): Number of extreme sets to plot

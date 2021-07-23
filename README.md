@@ -93,55 +93,62 @@ See [examples](nb).
 ### run_single_sample_gsea
 
 ```
-sc_el_sa (DataFrame): Scores as element-by-sample
-se_el_ (dict of str to list of str): Sets as set-to-element
+    sc_el_sa (DataFrame): Gene by sample
+    se_el_ (dict of str to list of str): Gene set to genes
 
-mi (int): Minimum set size
-ma (int): Maximum set size
-we (float): Weight used for enrichment method "ks" and "auc"
-al (str): Algorithm for enrichment: "ks", "auc", or "js"
+    mi (int): Minimum set size
+    ma (int): Maximum set size
 
-pa (str): Directory path to write enrichment_set_sample.tsv
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
+
+    pa (str): Directory path to write enrichment_set_sample.tsv
 ```
 
 ### run_prerank_gsea
 
 ```
-el_sc (Series): Scores sorted
-se_el_ (dict of str to list of str): Sets as set-to-element
+    el_sc (Series): Sorted gene scores
+    se_el_ (dict of str to list of str): Gene set to genes
 
-mi (int): Minimum set size
-ma (int): Maximum set size
-we (float): Weight used for enrichment method "ks" and "auc"
-al (str): Algorithm for enrichment: "ks", "auc", or "js"
-ra (int): Random seed
-n_pe (int): Number of permutations
-n_pl (int): Number of extreme sets to plot
-ad (list of str): Additional sets to plot
+    mi (int): Minimum set size
+    ma (int): Maximum set size
 
-pa (str): Directory path to write statistic.tsv and plots
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
+
+    ra (int): Random seed
+    n_pe (int): Number of permutations
+    n_pl (int): Number of extreme sets to plot
+    ad (list of str): Additional sets to plot
+
+    pa (str): Directory path to write statistic.tsv and plots
 ```
 
 ### run_gsea
 
 ```
-la_ (list): Sample labels
-sc_el_sa (DataFrame): Scores as element-by-sample
-se_el_ (dict of str to list of str): Sets as set-to-element
+    la_ (list): Sample labels
+    sc_el_sa (DataFrame): Gene by sample
+    se_el_ (dict of str to list of str): Gene set to genes
 
-fu (str): Function for rank: "signal to noise", "median difference", or "median ratio"
-pe (str): Permutation type: "label" or "set"
+    fu (str): Ranking function: "signal to noise", "median difference", or "median ratio"
 
-mi (int): Minimum set size
-ma (int): Maximum set size
-we (float): Weight used for enrichment method "ks" and "auc"
-al (str): Algorithm for enrichment: "ks", "auc", or "js"
-ra (int): Random seed
-n_pe (int): Number of permutations
-n_pl (int): Number of extreme sets to plot
-ad (list of str): Additional sets to plot
+    mi (int): Minimum set size
+    ma (int): Maximum set size
 
-pa (str): Directory path to write statistic.tsv and plots
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
+
+    pe (str): Permutation type: "label" or "set"
+
+    ra (int): Random seed
+
+    n_pe (int): Number of permutations
+    n_pl (int): Number of extreme sets to plot
+    ad (list of str): Additional sets to plot
+
+    pa (str): Directory path to write statistic.tsv and plots
 ```
 
 ## Discuss

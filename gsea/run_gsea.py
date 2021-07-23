@@ -12,34 +12,46 @@ from .score_1_n import score_1_n
 
 
 def run_gsea(
+    #
     la_,
     sc_el_sa,
     se_el_,
+    #
     fu="signal to noise",
-    pe="label",
+    #
     mi=5,
     ma=500,
+    #
     we=1.0,
     al="ks",
+    #
+    pe="label",
+    #
     ra=1729,
+    #
     n_pe=100,
     n_pl=25,
     ad=None,
+    #
     pa="",
 ):
     """
     la_ (list): Sample labels
-    sc_el_sa (DataFrame): Scores as element-by-sample
-    se_el_ (dict of str to list of str): Sets as set-to-element
+    sc_el_sa (DataFrame): Gene by sample
+    se_el_ (dict of str to list of str): Gene set to genes
 
-    fu (str): Function for rank: "signal to noise", "median difference", or "median ratio"
-    pe (str): Permutation type: "label" or "set"
+    fu (str): Ranking function: "signal to noise", "median difference", or "median ratio"
 
     mi (int): Minimum set size
     ma (int): Maximum set size
-    we (float): Weight used for enrichment method "ks" and "auc"
-    al (str): Algorithm for enrichment: "ks", "auc", or "js"
+
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
+
+    pe (str): Permutation type: "label" or "set"
+
     ra (int): Random seed
+
     n_pe (int): Number of permutations
     n_pl (int): Number of extreme sets to plot
     ad (list of str): Additional sets to plot

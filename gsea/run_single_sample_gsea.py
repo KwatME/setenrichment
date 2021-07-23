@@ -3,22 +3,27 @@ from .score_n_n import score_n_n
 
 
 def run_single_sample_gsea(
+    #
     sc_el_sa,
     se_el_,
+    #
     mi=5,
     ma=500,
+    #
     we=1.0,
     al="ks",
+    #
     pa="",
 ):
     """
-    sc_el_sa (DataFrame): Scores as element-by-sample
-    se_el_ (dict of str to list of str): Sets as set-to-element
+    sc_el_sa (DataFrame): Gene by sample
+    se_el_ (dict of str to list of str): Gene set to genes
 
     mi (int): Minimum set size
     ma (int): Maximum set size
-    we (float): Weight used for enrichment method "ks" and "auc"
-    al (str): Algorithm for enrichment: "ks", "auc", or "js"
+
+    we (float): Weight for enrichment algorithm "ks" and "auc"
+    al (str): Enrichment algorithm: "ks", "auc", or "js"
 
     pa (str): Directory path to write enrichment_set_sample.tsv
     """
