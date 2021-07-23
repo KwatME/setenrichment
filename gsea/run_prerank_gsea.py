@@ -1,3 +1,6 @@
+from kwat.significance import get_p_value, get_q_value
+from numpy import array, nan
+from numpy.random import choice, seed
 from pandas import DataFrame
 
 from ._select_gene_sets import _select_gene_sets
@@ -12,7 +15,7 @@ def run_prerank_gsea(
     we=1.0,
     me="ks",
     se=1729,
-    n_pe=1000,
+    n_pe=100,
     n_pl=25,
     ad=None,
     pa="",
@@ -37,13 +40,55 @@ def run_prerank_gsea(
 
     se_en = score_1_n(ge_sc, se_ge_, we=we, me=me)
 
-    se, n_pe
+    se_pv = {}
 
-    pv_ = None
+    if 0 < n_pe:
 
-    qv_ = None
+        print("Computing p-values by permuting sets...")
 
-    nu_se_st = DataFrame({"Enrichment": se_en, "P-Value": pv_, "Q-Value": qv_})
+        seed(se)
+
+        se_si = {se: len(ge_) for se, ge_ in se_ge_.items()}
+
+        ge_ = ge_sc.index.values
+
+        se_enr_ = []
+
+        for ie in range(n_pe):
+
+            print("\t{}/{}".format(ie + 1, n_pe))
+
+            se_enr_.append(
+                score_1_n(
+                    ge_sc,
+                    {
+                        se: choice(ge_, size=si, replace=False)
+                        for se, si in se_si.items()
+                    },
+                    we=we,
+                    me=me,
+                )
+            )
+
+        for se, en in se_en.items():
+
+            if en < 0:
+
+                di = "<"
+
+            else:
+
+                di = ">"
+
+            se_pv[se] = get_p_value(en, array([se_enr[se] for se_enr in se_enr_]), di)
+
+    else:
+
+        se_pv = nan
+
+    nu_se_st = DataFrame({"Enrichment": se_en, "P-Value": se_pv})
+
+    nu_se_st["Q-Value"] = get_q_value(nu_se_st["P-Value"].values)
 
     n_pl, ad
 

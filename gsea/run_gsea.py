@@ -23,6 +23,8 @@ def run_gsea(
     Keyword arguments of run_prerank_gsea...
     """
 
+    ke.pop("n_pe")
+
     sc_ge_sa = _normalize_each_sample(sc_ge_sa, no)
 
     sa_la, ra

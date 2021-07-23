@@ -1,11 +1,11 @@
 def _select_gene_sets(
-    gm,
+    se_ge_,
     mi,
     ma,
 ):
 
-    gm = {se: ge_ for se, ge_ in gm.items() if mi <= len(ge_) <= ma}
+    se_ge_ = {se: ge_ for se, ge_ in se_ge_.items() if mi <= len(ge_) <= ma}
 
-    print("Selected {} gene sets ({} <= size <= {}).".format(len(gm), mi, ma))
+    print("Selected {} gene sets ({} <= size <= {}).".format(len(se_ge_), mi, ma))
 
-    return gm
+    return se_ge_
