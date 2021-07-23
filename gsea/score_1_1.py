@@ -2,15 +2,15 @@ from . import Main
 from ._send_to_julia import _send_to_julia
 
 
-def score_1_1(el_sc, el1_, we=1.0, me="ks", pl=True, title="Title"):
+def score_1_1(el_sc, el_, we=1.0, al="ks", pl=True, title="Title"):
 
-    _send_to_julia(el_sc, el1_, None, None, we, me)
+    _send_to_julia(el_sc, None, el_, None, we, al)
 
     Main.pl = pl
 
     Main.title = title
 
-    if me in ["ks", "auc"]:
+    if al in ["ks", "auc"]:
 
         return Main.eval(
             """
@@ -19,14 +19,14 @@ def score_1_1(el_sc, el1_, we=1.0, me="ks", pl=True, title="Title"):
                 sc_,
                 el1_;
                 we = we,
-                me = me,
+                al = al,
                 pl = pl,
                 title = title,
             )
         """
         )
 
-    elif me == "js":
+    elif al == "js":
 
         return Main.eval(
             """
@@ -39,5 +39,3 @@ def score_1_1(el_sc, el1_, we=1.0, me="ks", pl=True, title="Title"):
             )
         """
         )
-
-    raise

@@ -1,42 +1,34 @@
-from ._combine_gene_set_enrichments import _combine_gene_set_enrichments
-from ._normalize_each_sample import _normalize_each_sample
-from ._select_gene_sets import _select_gene_sets
+from ._select_set import _select_set
 from .score_n_n import score_n_n
 
 
 def run_single_sample_gsea(
-    sc_ge_sa,
-    se_ge_,
-    no="-0-",
+    sc_el_sa,
+    se_el_,
     mi=5,
     ma=500,
     we=1.0,
-    me="ks",
+    al="ks",
     pa="",
 ):
     """
-    sc_ge_sa (DataFrame): Gene-by-sample score
-    se_ge_ (dict of str to list of str): set-to-genes
+    sc_el_sa (DataFrame): Scores as element-by-sample
+    se_el_ (dict of str to list of str): Sets as set-to-element
 
-    no (str): Normalization method: "-0-", "0-1", "sum", "rank average", "rank min", "rank max", "rank dense", "rank ordinal", or "log"
-    mi (int): Minimum gene set size
-    ma (int): Maximum gene set size
+    mi (int): Minimum set size
+    ma (int): Maximum set size
     we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", or "js"
+    al (str): Algorithm for enrichment: "ks", "auc", or "js"
 
-    pa (str): .TSV file path to write the gene-set-by-sample output
+    pa (str): Directory path to write enrichment_set_sample.tsv
     """
 
-    sc_ge_sa = _normalize_each_sample(sc_ge_sa, no)
+    se_el_ = _select_set(se_el_, mi, ma)
 
-    se_ge_ = _select_gene_sets(se_ge_, mi, ma)
-
-    en_se_sa = score_n_n(sc_ge_sa, se_ge_, me=me, we=we)
-
-    en_se_sa = _combine_gene_set_enrichments(en_se_sa)
+    en_se_sa = score_n_n(sc_el_sa, se_el_, we=we, al=al)
 
     if pa != "":
 
-        en_se_sa.to_csv(pa, sep="\t")
+        en_se_sa.to_csv("{}/enrichment_set_sample.tsv".format(pa), sep="\t")
 
     return en_se_sa

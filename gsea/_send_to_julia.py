@@ -1,27 +1,13 @@
 from . import Main
 
 
-def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa, we, me):
+def _send_to_julia(el_sc, sc_el_sa, el_, se_el_, we, al):
 
     if el_sc is not None:
 
         Main.el_ = list(el_sc.index)
 
         Main.sc_ = list(el_sc)
-
-    if el1_ is not None:
-
-        Main.el1_ = list(el1_)
-
-    if se_el1_ is not None:
-
-        Main.se_el1_ = se_el1_
-
-        Main.eval(
-            """
-            se_el1_ = convert(Dict{String, Vector{String}}, se_el1_)
-        """
-        )
 
     if sc_el_sa is not None:
 
@@ -30,6 +16,20 @@ def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa, we, me):
         Main.eval(
             """
             sc_el_sa = DataFrames.DataFrame(Pandas.DataFrame(sc_el_sa))
+        """
+        )
+
+    if el_ is not None:
+
+        Main.el1_ = list(el_)
+
+    if se_el_ is not None:
+
+        Main.se_el_ = se_el_
+
+        Main.eval(
+            """
+            se_el_ = convert(Dict{String, Vector{String}}, se_el_)
         """
         )
 
@@ -43,6 +43,6 @@ def _send_to_julia(el_sc, el1_, se_el1_, sc_el_sa, we, me):
         """
         )
 
-    if me is not None:
+    if al is not None:
 
-        Main.me = me
+        Main.al = al

@@ -3,70 +3,70 @@ from numpy import array, nan
 from numpy.random import choice, seed
 from pandas import DataFrame
 
-from ._select_gene_sets import _select_gene_sets
+from ._select_set import _select_set
 from .score_1_n import score_1_n
 
 
 def run_prerank_gsea(
-    ge_sc,
-    se_ge_,
+    el_sc,
+    se_el_,
     mi=5,
     ma=500,
     we=1.0,
-    me="ks",
-    se=1729,
+    al="ks",
+    ra=1729,
     n_pe=100,
     n_pl=25,
     ad=None,
     pa="",
 ):
     """
-    ge_sc (Series): Gene scores
-    se_ge_ (dict of str to list of str): set-to-genes
+    el_sc (Series): Scores sorted
+    se_el_ (dict of str to list of str): Sets as set-to-element
 
-    mi (int): Minimum gene set size
-    ma (int): Maximum gene set size
+    mi (int): Minimum set size
+    ma (int): Maximum set size
     we (float): Weight used for enrichment method "ks" and "auc"
-    me (str): Enrichment method: "ks", "auc", or "js"
-    se (int): Random seed
+    al (str): Algorithm for enrichment: "ks", "auc", or "js"
+    ra (int): Random seed
     n_pe (int): Number of permutations
-    n_pl (int): Number of extreme gene sets to plot
-    ad (list of str): Additional gene sets to plot
+    n_pl (int): Number of extreme sets to plot
+    ad (list of str): Additional sets to plot
 
-    pa (str): Directory path to write the statistic.tsv and plots
+    pa (str): Directory path to write statistic.tsv and plots
     """
 
-    se_ge_ = _select_gene_sets(se_ge_, mi, ma)
+    se_el_ = _select_set(se_el_, mi, ma)
 
-    se_en = score_1_n(ge_sc, se_ge_, we=we, me=me)
+    se_en = score_1_n(el_sc, se_el_, we=we, al=al)
 
     se_pv = {}
 
     if 0 < n_pe:
 
-        print("Computing p-values by permuting sets...")
+        print("Permuting sets to compute p-values...")
 
-        seed(se)
+        seed(ra)
 
-        se_si = {se: len(ge_) for se, ge_ in se_ge_.items()}
+        se_si = {se: len(el_) for se, el_ in se_el_.items()}
 
-        ge_ = ge_sc.index.values
+        el_ = el_sc.index.values
 
-        se_enr_ = []
+        se_ra_ = []
 
         for ie in range(n_pe):
 
-            print("\t{}/{}".format(ie + 1, n_pe))
+            print("  {}/{}".format(ie + 1, n_pe))
 
-            se_enr_.append(
+            se_ra_.append(
                 score_1_n(
-                    ge_sc,
+                    el_sc,
                     {
-                        se: choice(ge_, size=si, replace=False)
+                        se: choice(el_, size=si, replace=False)
                         for se, si in se_si.items()
                     },
                     we=we,
-                    me=me,
+                    al=al,
                 )
             )
 
@@ -80,7 +80,7 @@ def run_prerank_gsea(
 
                 di = ">"
 
-            se_pv[se] = get_p_value(en, array([se_enr[se] for se_enr in se_enr_]), di)
+            se_pv[se] = get_p_value(en, array([se_ra[se] for se_ra in se_ra_]), di)
 
     else:
 
@@ -90,7 +90,11 @@ def run_prerank_gsea(
 
     nu_se_st["Q-Value"] = get_q_value(nu_se_st["P-Value"].values)
 
-    n_pl, ad
+    nu_se_st.sort_values("Enrichment", ascending=False, inplace=True)
+
+    n_pl
+
+    ad
 
     if pa != "":
 
