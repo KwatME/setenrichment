@@ -1,4 +1,4 @@
-def _select_set(
+def select_set(
     se_el_,
     mi,
     ma,

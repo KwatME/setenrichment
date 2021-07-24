@@ -1,18 +1,17 @@
-from kwat.array_array import separate_and_apply
-from kwat.information import get_signal_to_noise
 from kwat.significance import get_p_value, get_q_value
-from numpy import apply_along_axis, array
+from numpy import array
 from numpy.random import seed, shuffle
-from pandas import DataFrame, Series
+from pandas import DataFrame
 
-from ._select_set import _select_set
+from .compare_with_target import compare_with_target
 from .run_prerank_gsea import run_prerank_gsea
 from .score_1_n import score_1_n
+from .select_set import select_set
 
 
 def run_gsea(
     #
-    la_,
+    ta,
     sc_el_sa,
     se_el_,
     #
@@ -21,6 +20,7 @@ def run_gsea(
     mi=5,
     ma=500,
     #
+    n_jo=1,
     we=1.0,
     al="ks",
     #
@@ -35,7 +35,7 @@ def run_gsea(
     pa="",
 ):
     """
-    la_ (list): Sample labels
+    ta (array): Target sample labels
     sc_el_sa (DataFrame): Gene by sample
     se_el_ (dict of str to list of str): Gene set to genes
 
@@ -44,6 +44,7 @@ def run_gsea(
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 
@@ -58,22 +59,9 @@ def run_gsea(
     pa (str): Directory path to write statistic.tsv and plots
     """
 
-    se_el_ = _select_set(se_el_, mi, ma)
+    el_sc = compare_with_target(ta, sc_el_sa, fu, separate=True, n_jo=n_jo)
 
-    if fu == "signal to noise":
-
-        fu = get_signal_to_noise
-
-    la_ = array(la_)
-
-    def separate_and_apply_along(ve):
-
-        return Series(
-            apply_along_axis(separate_and_apply, 1, sc_el_sa.values, ve, fu),
-            index=sc_el_sa.index,
-        )
-
-    el_sc = separate_and_apply_along(la_)
+    se_el_ = select_set(se_el_, mi, ma)
 
     if pe == "label":
 
@@ -83,7 +71,7 @@ def run_gsea(
 
         se_ra_ = []
 
-        sh = la_.copy()
+        sh = ta.copy()
 
         seed(ra)
 
@@ -95,7 +83,7 @@ def run_gsea(
 
             se_ra_.append(
                 score_1_n(
-                    separate_and_apply_along(sh),
+                    compare_with_target(sh, sc_el_sa, fu, separate=True, n_jo=n_jo),
                     se_el_,
                     we=we,
                     al=al,
@@ -130,11 +118,11 @@ def run_gsea(
 
             nu_se_st.to_csv("{}/statistics.tsv".format(pa), sep="\t")
 
-        return el_sc, nu_se_st
+        return nu_se_st
 
     elif pe == "set":
 
-        return el_sc, run_prerank_gsea(
+        return run_prerank_gsea(
             el_sc,
             se_el_,
             mi=mi,

@@ -74,11 +74,11 @@ from pandas import Series
 
 el_sc = Series([-1., 1.], index=["A", "B"])
 
-el1_ = ["B"]
+el_ = ["B"]
 
 from gsea import score_1_1
 
-print(score_1_1(el_sc, el1_, pl=False))
+print(score_1_1(el_sc, el_, pl=False))
 
 print("Great!")
 '
@@ -99,6 +99,7 @@ See [examples](nb).
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 
@@ -114,6 +115,7 @@ See [examples](nb).
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 
@@ -128,7 +130,7 @@ See [examples](nb).
 ### run_gsea
 
 ```
-    la_ (list): Sample labels
+    ta (array): Target sample labels
     sc_el_sa (DataFrame): Gene by sample
     se_el_ (dict of str to list of str): Gene set to genes
 
@@ -137,6 +139,7 @@ See [examples](nb).
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 

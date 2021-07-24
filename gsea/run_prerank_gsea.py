@@ -3,8 +3,8 @@ from numpy import array, nan
 from numpy.random import choice, seed
 from pandas import DataFrame
 
-from ._select_set import _select_set
 from .score_1_n import score_1_n
+from .select_set import select_set
 
 
 def run_prerank_gsea(
@@ -14,6 +14,7 @@ def run_prerank_gsea(
     mi=5,
     ma=500,
     #
+    n_jo=1,
     we=1.0,
     al="ks",
     #
@@ -31,6 +32,7 @@ def run_prerank_gsea(
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 
@@ -42,7 +44,7 @@ def run_prerank_gsea(
     pa (str): Directory path to write statistic.tsv and plots
     """
 
-    se_el_ = _select_set(se_el_, mi, ma)
+    se_el_ = select_set(se_el_, mi, ma)
 
     se_en = score_1_n(el_sc, se_el_, we=we, al=al)
 

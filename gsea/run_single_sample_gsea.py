@@ -1,5 +1,5 @@
-from ._select_set import _select_set
 from .score_n_n import score_n_n
+from .select_set import select_set
 
 
 def run_single_sample_gsea(
@@ -10,6 +10,7 @@ def run_single_sample_gsea(
     mi=5,
     ma=500,
     #
+    n_jo=1,
     we=1.0,
     al="ks",
     #
@@ -22,13 +23,14 @@ def run_single_sample_gsea(
     mi (int): Minimum set size
     ma (int): Maximum set size
 
+    n_jo (int): Number of threads
     we (float): Weight for enrichment algorithm "ks" and "auc"
     al (str): Enrichment algorithm: "ks", "auc", or "js"
 
     pa (str): Directory path to write enrichment_set_sample.tsv
     """
 
-    se_el_ = _select_set(se_el_, mi, ma)
+    se_el_ = select_set(se_el_, mi, ma)
 
     en_se_sa = score_n_n(sc_el_sa, se_el_, we=we, al=al)
 
