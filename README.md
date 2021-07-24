@@ -134,7 +134,7 @@ See [examples](nb).
     sc_el_sa (DataFrame): Gene by sample
     se_el_ (dict of str to list of str): Gene set to genes
 
-    fu (str): Ranking function: "signal to noise", "median difference", or "median ratio"
+    fu (str): Ranking function: "signal_to_noise", "median_difference", or "median_ratio"
 
     mi (int): Minimum set size
     ma (int): Maximum set size

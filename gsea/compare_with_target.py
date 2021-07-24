@@ -5,15 +5,15 @@ from pandas import Series
 
 def compare_with_target(ta, da, fu, separate=True, n_jo=1):
 
-    if fu == "signal to noise":
+    if fu == "signal_to_noise":
 
         fu = get_signal_to_noise
 
-    elif fu == "median difference":
+    elif fu == "median_difference":
 
         raise
 
-    elif fu == "median ratio":
+    elif fu == "median_ratio":
 
         raise
 
