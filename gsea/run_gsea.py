@@ -1,7 +1,8 @@
-from kwat.significance import get_p_value, get_q_value
 from numpy import array
 from numpy.random import seed, shuffle
 from pandas import DataFrame
+
+from kwat.significance import get_p_value, get_q_value
 
 from .compare_with_target import compare_with_target
 from .run_prerank_gsea import run_prerank_gsea
@@ -39,7 +40,7 @@ def run_gsea(
     sc_el_sa (DataFrame): Gene by sample
     se_el_ (dict of str to list of str): Gene set to genes
 
-    fu (str): Ranking function: "signal_to_noise", "median_difference", or "median_ratio"
+    fu (str): Ranking function: "signal_to_noise", "mean_difference", "mean_ratio", "median_difference", "median_ratio", "cosine_distance", or "pearson_correlation"
 
     mi (int): Minimum set size
     ma (int): Maximum set size
