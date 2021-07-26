@@ -1,8 +1,7 @@
+from kwat.significance import get_p_value, get_q_value
 from numpy import array, nan
 from numpy.random import choice, seed
 from pandas import DataFrame
-
-from kwat.significance import get_p_value, get_q_value
 
 from .score_1_n import score_1_n
 from .select_set import select_set

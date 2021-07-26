@@ -1,8 +1,7 @@
+from kwat.significance import get_p_value, get_q_value
 from numpy import array
 from numpy.random import seed, shuffle
 from pandas import DataFrame
-
-from kwat.significance import get_p_value, get_q_value
 
 from .compare_with_target import compare_with_target
 from .run_prerank_gsea import run_prerank_gsea
@@ -60,7 +59,7 @@ def run_gsea(
     pa (str): Directory path to write statistic.tsv and plots
     """
 
-    el_sc = compare_with_target(ta, sc_el_sa, fu, separate=True, n_jo=n_jo)
+    el_sc = compare_with_target(ta, sc_el_sa, fu, n_jo=n_jo)
 
     se_el_ = select_set(se_el_, mi, ma)
 
@@ -84,7 +83,7 @@ def run_gsea(
 
             se_ra_.append(
                 score_1_n(
-                    compare_with_target(sh, sc_el_sa, fu, separate=True, n_jo=n_jo),
+                    compare_with_target(sh, sc_el_sa, fu, n_jo=n_jo),
                     se_el_,
                     we=we,
                     al=al,
