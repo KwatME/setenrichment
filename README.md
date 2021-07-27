@@ -38,6 +38,7 @@ for na in [
     "PyCall", # Interface between python and julia
     "DataFrames",
     "Pandas",
+    "IJulia",
 ]
 
     add(na)
