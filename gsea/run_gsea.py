@@ -63,6 +63,7 @@ def run_gsea(
 
     se_el_ = select_set(se_el_, mi, ma)
 
+    # TODO: sort the columns once and then compare_with_target
     if pe == "label":
 
         se_en = score_1_n(el_sc, se_el_, we=we, al=al)
