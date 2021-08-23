@@ -1,7 +1,8 @@
-from kwat.significance import get_p_value, get_q_value
 from numpy import array
 from numpy.random import seed, shuffle
 from pandas import DataFrame
+
+from kwat.significance import get_p_value, get_q_value
 
 from .compare_with_target import compare_with_target
 from .run_prerank_gsea import run_prerank_gsea
