@@ -55,7 +55,7 @@ def run_prerank_gsea(
 
         print("Permuting sets to compute p-values...")
 
-        seed(ra)
+        seed(seed=ra)
 
         se_si = {se: len(el_) for se, el_ in se_el_.items()}
 

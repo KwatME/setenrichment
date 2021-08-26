@@ -75,7 +75,7 @@ def run_gsea(
 
         sh = ta.copy()
 
-        seed(ra)
+        seed(seed=ra)
 
         for ie in range(n_pe):
 
