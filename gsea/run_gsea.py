@@ -1,20 +1,18 @@
-from numpy import array
 from numpy.random import seed, shuffle
-from pandas import DataFrame
 
-from kwat.significance import get_p_value, get_q_value
-
-from .compare_with_target import compare_with_target
+from ._compare_with_target import _compare_with_target
+from ._get_p_q import _get_p_q
+from ._make_set_by_statistic import _make_set_by_statistic
+from ._score_1_n import _score_1_n
+from ._select_set import _select_set
 from .run_prerank_gsea import run_prerank_gsea
-from .score_1_n import score_1_n
-from .select_set import select_set
 
 
 def run_gsea(
     #
     ta,
-    sc_el_sa,
-    se_el_,
+    sc_fe_sa,
+    se_fe_,
     #
     fu="signal_to_noise",
     #
@@ -37,8 +35,8 @@ def run_gsea(
 ):
     """
     ta (array): Target sample labels
-    sc_el_sa (DataFrame): Gene by sample
-    se_el_ (dict of str to list of str): Gene set to genes
+    sc_fe_sa (DataFrame): Gene by sample
+    se_fe_ (dict of str to list of str): Gene set to genes
 
     fu (str): Ranking function: "signal_to_noise", "mean_difference", "mean_ratio", "median_difference", "median_ratio", "cosine_distance", or "pearson_correlation"
 
@@ -60,57 +58,48 @@ def run_gsea(
     pa (str): Directory path to write statistic.tsv and plots
     """
 
-    el_sc = compare_with_target(ta, sc_el_sa, fu, n_jo=n_jo)
+    fe_sc = _compare_with_target(ta, sc_fe_sa, fu, n_jo=n_jo)
 
-    se_el_ = select_set(se_el_, mi, ma)
+    se_fe_ = _select_set(se_fe_, mi, ma)
 
-    # TODO: sort the columns once and then compare_with_target
     if pe == "label":
 
-        se_en = score_1_n(el_sc, se_el_, we=we, al=al)
+        se_en = _score_1_n(fe_sc, se_fe_, we=we, al=al)
 
-        print("Permuting labels to compute p-values...")
+        if 0 < n_pe:
 
-        se_ra_ = []
+            print("Permuting labels to compute p-values...")
 
-        sh = ta.copy()
+            tac = ta.copy()
 
-        seed(seed=ra)
+            se_ra_ = []
 
-        for ie in range(n_pe):
+            seed(seed=ra)
 
-            print("  {}/{}".format(ie + 1, n_pe))
+            for ie in range(n_pe):
 
-            shuffle(sh)
+                print("  {}/{}".format(ie + 1, n_pe))
 
-            se_ra_.append(
-                score_1_n(
-                    compare_with_target(sh, sc_el_sa, fu, n_jo=n_jo),
-                    se_el_,
-                    we=we,
-                    al=al,
+                shuffle(tac)
+
+                se_ra_.append(
+                    _score_1_n(
+                        _compare_with_target(tac, sc_fe_sa, fu, n_jo=n_jo),
+                        se_fe_,
+                        we=we,
+                        al=al,
+                    )
                 )
-            )
 
-        se_pv = {}
+            pv_, qv_ = _get_p_q(se_en, se_ra_)
 
-        for se, en in se_en.items():
+        else:
 
-            if en < 0:
+            pv_ = nan
 
-                di = "<"
+            qv_ = nan
 
-            else:
-
-                di = ">"
-
-            se_pv[se] = get_p_value(en, array([se_ra[se] for se_ra in se_ra_]), di)
-
-        nu_se_st = DataFrame({"Enrichment": se_en, "P-Value": se_pv})
-
-        nu_se_st["Q-Value"] = get_q_value(nu_se_st["P-Value"].values)
-
-        nu_se_st.sort_values("Enrichment", ascending=False, inplace=True)
+        nu_se_st = _make_set_by_statistic(se_en, pv_, qv_)
 
         n_pl
 
@@ -118,17 +107,18 @@ def run_gsea(
 
         if pa != "":
 
-            nu_se_st.to_csv("{}/statistics.tsv".format(pa), sep="\t")
+            nu_se_st.to_csv(path_or_buf="{}/statistics.tsv".format(pa), sep="\t")
 
         return nu_se_st
 
     elif pe == "set":
 
         return run_prerank_gsea(
-            el_sc,
-            se_el_,
+            fe_sc,
+            se_fe_,
             mi=mi,
             ma=ma,
+            n_jo=n_jo,
             we=we,
             al=al,
             ra=ra,

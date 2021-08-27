@@ -94,8 +94,8 @@ See [examples](nb).
 ### run_single_sample_gsea
 
 ```
-    sc_el_sa (DataFrame): Gene by sample
-    se_el_ (dict of str to list of str): Gene set to genes
+    sc_fe_sa (DataFrame): Gene by sample
+    se_fe_ (dict of str to list of str): Gene set to genes
 
     mi (int): Minimum set size
     ma (int): Maximum set size
@@ -110,8 +110,8 @@ See [examples](nb).
 ### run_prerank_gsea
 
 ```
-    el_sc (Series): Sorted gene scores
-    se_el_ (dict of str to list of str): Gene set to genes
+    fe_sc (Series): Sorted gene scores
+    se_fe_ (dict of str to list of str): Gene set to genes
 
     mi (int): Minimum set size
     ma (int): Maximum set size
@@ -132,8 +132,8 @@ See [examples](nb).
 
 ```
     ta (array): Target sample labels
-    sc_el_sa (DataFrame): Gene by sample
-    se_el_ (dict of str to list of str): Gene set to genes
+    sc_fe_sa (DataFrame): Gene by sample
+    se_fe_ (dict of str to list of str): Gene set to genes
 
     fu (str): Ranking function: "signal_to_noise", "mean_difference", "mean_ratio", "median_difference", "median_ratio", "cosine_distance", or "pearson_correlation"
 

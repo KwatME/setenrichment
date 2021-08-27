@@ -1,5 +1,3 @@
-from pandas import Series
-
 from kwat.array_array import (
     get_cosine_distance,
     get_mean_difference,
@@ -10,49 +8,50 @@ from kwat.array_array import (
     get_signal_to_noise,
 )
 from kwat.row import compare_with_target as row_compare_with_target
+from pandas import Series
 
 
-def compare_with_target(ta, da, fu, n_jo=1):
+def _compare_with_target(ta, da, fu, n_jo=1):
 
     if fu == "signal_to_noise":
 
-        separate = True
+        se = True
 
         fu = get_signal_to_noise
 
     elif fu == "mean_difference":
 
-        separate = True
+        se = True
 
         fu = get_mean_difference
 
     elif fu == "mean_ratio":
 
-        separate = True
+        se = True
 
         fu = get_mean_ratio
 
     elif fu == "median_difference":
 
-        separate = True
+        se = True
 
         fu = get_median_difference
 
     elif fu == "median_ratio":
 
-        separate = True
+        se = True
 
         fu = get_median_ratio
 
     elif fu == "cosine_distance":
 
-        separate = False
+        se = False
 
         fu = get_cosine_distance
 
     elif fu == "pearson_correlation":
 
-        separate = False
+        se = False
 
         fu = get_pearson_correlation
 
@@ -61,7 +60,7 @@ def compare_with_target(ta, da, fu, n_jo=1):
         raise
 
     return Series(
-        row_compare_with_target(ta, da.values, fu, separate, n_jo=n_jo),
+        data=row_compare_with_target(ta, da.values, fu, se, n_jo=n_jo),
         name=fu.__name__,
         index=da.index,
     ).sort_values()

@@ -2,26 +2,20 @@ from . import Main
 from ._send_to_julia import _send_to_julia
 
 
-def score_1_1(el_sc, el_, we=1.0, al="ks", pl=True, title="Title"):
+def _score_1_n(fe_sc, se_fe_, we=1.0, al="ks"):
 
-    _send_to_julia(el_sc, None, el_, None, we, al)
-
-    Main.pl = pl
-
-    Main.title = title
+    _send_to_julia(fe_sc, None, None, se_fe_, we, al)
 
     if al in ["ks", "auc"]:
 
         return Main.eval(
             """
             score_set(
-                el_,
+                fe_,
                 sc_,
-                el1_;
+                se_fe_;
                 we = we,
                 al = al,
-                pl = pl,
-                title = title,
             )
         """
         )
@@ -31,11 +25,9 @@ def score_1_1(el_sc, el_, we=1.0, al="ks", pl=True, title="Title"):
         return Main.eval(
             """
             score_set_new(
-                el_,
+                fe_,
                 sc_,
-                el1_;
-                pl = pl,
-                title = title,
+                se_fe_;
             )
         """
         )
