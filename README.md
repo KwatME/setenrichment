@@ -55,13 +55,13 @@ end
 julia --eval '
 using Kwat.feature_set_enrichment: score_set
 
-el_ = ["A", "B"]
+fe_ = ["A", "B"]
 
 sc_ = [-1., 1.]
 
 el1_ = ["B"]
 
-println(score_set(el_, sc_, el1_; pl = false))
+println(score_set(fe_, sc_, el1_; pl = false))
 
 println("Good.")
 '
@@ -73,13 +73,13 @@ println("Good.")
 python -c '
 from pandas import Series
 
-el_sc = Series([-1., 1.], index=["A", "B"])
+fe_sc = Series([-1., 1.], index=["A", "B"])
 
-el_ = ["B"]
+fe_ = ["B"]
 
 from gsea import score_1_1
 
-print(score_1_1(el_sc, el_, pl=False))
+print(score_1_1(fe_sc, fe_, pl=False))
 
 print("Great!")
 '
