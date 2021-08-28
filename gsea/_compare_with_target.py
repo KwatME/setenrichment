@@ -1,5 +1,3 @@
-from pandas import Series
-
 from kwat.array_array import (
     get_cosine_distance,
     get_mean_difference,
@@ -10,6 +8,7 @@ from kwat.array_array import (
     get_signal_to_noise,
 )
 from kwat.row import compare_with_target as row_compare_with_target
+from pandas import Series
 
 
 def _compare_with_target(ta, da, fu, n_jo=1):

@@ -1,6 +1,5 @@
-from numpy import array, full, nan
-
 from kwat.significance import get_p_value, get_q_value
+from numpy import array, full, nan
 
 
 def _get_p_q(se_en, se_ra_):
